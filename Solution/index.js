@@ -46,7 +46,7 @@ ${credits}
 ## License
 ${license}
 `;
-   
+   writeToFile('README.md',answersData)
     // Further processing of answersData
     // ...
 // TODO: Create a function to write README file
@@ -58,5 +58,4 @@ function writeToFile(fileName, answers) {
 });
 }})
 
-writeToFile('README.md',answersData)
 
