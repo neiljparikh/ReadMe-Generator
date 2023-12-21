@@ -12,21 +12,43 @@ inquirer.prompt([
         type: 'input',
         name: 'description',
         message: "Provide a description of your project:"
+    },
+    {   
+        type: 'input',
+        name: 'installation',
+        message: "What are the steps required to install your project?"
+    },
+    {   
+        type: 'input',
+        name: 'credits',
+        message: "List your collaborators"
+    },
+    {   
+        type: 'input',
+        name: 'license',
+        message: "Which licenses did you use?"
     }
 ])
-.then(answers => {
-    let answersData = answers;
-    answersData = `
-    # ${answers.title}
+.then(({title, description, installation, credits, license}) => {
+    let answersData = 
+`
+# ${title}
     
-    ## Description
-    ${answers.description}
-            `;
-   writeToFile('README.md',answersData)
+## Description
+${description}
+
+## Installation
+${installation}
+
+## Credits
+${credits}
+
+## License
+${license}
+`;
+   
     // Further processing of answersData
     // ...
-});
-
 // TODO: Create a function to write README file
 function writeToFile(fileName, answers) {
     fs.writeFile(fileName, answers, err => {
@@ -34,12 +56,7 @@ function writeToFile(fileName, answers) {
     } else {
         console.log('README created successfully')}
 });
-}
+}})
 
-// TODO: Create a function to initialize app
-// function init() {
-//     writeToFile()
-// }
+writeToFile('README.md',answersData)
 
-// // Function call to initialize app
-// init();
