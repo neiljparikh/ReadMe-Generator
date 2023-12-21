@@ -29,6 +29,7 @@ inquirer.prompt([
         message: "Which licenses did you use?"
     }
 ])
+//Destructuring the relevant variables from user input to call in the answersData variable
 .then(({title, description, installation, credits, license}) => {
     let answersData = 
 `
@@ -46,9 +47,9 @@ ${credits}
 ## License
 ${license}
 `;
+//Initialize function to create README file
    writeToFile('README.md',answersData)
-    // Further processing of answersData
-    // ...
+   
 // TODO: Create a function to write README file
 function writeToFile(fileName, answers) {
     fs.writeFile(fileName, answers, err => {
